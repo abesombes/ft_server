@@ -1,2 +1,3 @@
 #!/bin/bash
-service nginx start 
+service nginx start
+service mysql startmysqlshow data
