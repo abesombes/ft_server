@@ -12,14 +12,13 @@ RUN tar xvf phpMyAdmin-5.1.0-english.tar.gz
 RUN rm -rf phpMyAdmin-5.1.0-english.tar.gz
 RUN mv phpMyAdmin-5.1.0-english /usr/share/phpmyadmin
 COPY srcs/nginx.conf /etc/nginx/sites-available/localhost/
-RUN mkdir -p /var/www/localhost
-COPY srcs/index.html /var/www/localhost/index.html
+COPY srcs/index.html /var/www/html/index.html
 RUN rm /etc/nginx/sites-enabled/default
-RUN ln -fs /etc/nginx/sites-available/localhost/ /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/localhost/nginx.conf /etc/nginx/sites-enabled/default
 COPY srcs/*.sh ./
 RUN chmod +x mkcert
 RUN ./mkcert -install
 RUN ./mkcert localhost
 RUN mkdir /etc/nginx/ssl/
 RUN mv *.pem /etc/nginx/ssl/
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD bash start.sh
