@@ -1,3 +1,4 @@
+#!/bin/bash
 # DOWNLOAD OF PHPMYADMIN AND EXTRACTION
 
 mkdir -p usr/share/phpmyadmin
